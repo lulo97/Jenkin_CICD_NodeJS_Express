@@ -14,21 +14,21 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                bat 'npm install'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t Jenkin_CICD_NodeJS_Express_Image .'
+                bat 'docker build -t Jenkin_CICD_NodeJS_Express_Image .'
             }
         }
 
         stage('Deploy Application') {
             steps {
-                sh 'docker stop Jenkin_CICD_NodeJS_Express_Container || true'
-                sh 'docker rm Jenkin_CICD_NodeJS_Express_Container || true'
-                sh 'docker run -d -p 3000:3000 --name Jenkin_CICD_NodeJS_Express_Container Jenkin_CICD_NodeJS_Express_Image'
+                bat 'docker stop Jenkin_CICD_NodeJS_Express_Container || true'
+                bat 'docker rm Jenkin_CICD_NodeJS_Express_Container || true'
+                bat 'docker run -d -p 3000:3000 --name Jenkin_CICD_NodeJS_Express_Container Jenkin_CICD_NodeJS_Express_Image'
             }
         }
     }
